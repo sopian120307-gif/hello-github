@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOPIAN - UKM CODE LABZ</title>
+  <!-- Menggunakan Tailwind CSS untuk tata letak dan komponen UI responsif -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Inter untuk antarmuka Login dan tombol kontrol -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Pengaturan dasar halaman */
+    body {
+      font-family: 'Algerian', sans-serif;
+      overflow-x: hidden;
+    }
+    .banner-font {
+      font-family: 'Algerian', Times, Georgia, serif;
+      font-style: Italic; 
+      font-weight: 70;
+    }
+
+    /* =========================================================
+       KEYFRAMES ANIMASI (Sesuai struktur gaya.css milikmu)
+       ========================================================= */
+    @keyframes turunMemantul {
+      0% {
+        opacity: 0;
+        transform: translateY(-60px);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(12px);
+      }
+      80% {
+        transform: translateY(-6px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomMasuk {
+      0% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes masukDariKiri {
+      0% {
+        opacity: 0;
+        transform: translateX(-110px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes masukDariKanan {
+      0% {
+        opacity: 0;
+        transform: translateX(110px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* =========================================================
+       GAYA BANNER UTAMA & EFEK HOVER
+       ========================================================= */
+    .banner-box {
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin: 14px auto;
+      text-align: center;
+      color: #000000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      
+      opacity: 1;
+      transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .banner-box:hover,
+    .A:hover,
+    .B:hover,
+    .C:hover,
+    .D:hover,
+    .E:hover {
+      transform: translateX(15px);
+      filter: brightness(1.1);
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+    }
+
+    /* Warna spesifik setiap elemen sesuai gambar hasil browser */
+    #judul-percobaan {
+      background-color: red;
+    }
+
+    #bagian_1 {
+      background-color: yellow; 
+    }
+
+    .A {
+      background-color: rgb(13, 225, 13);
+    }
+
+    .B {
+      background-color:rgb(37, 37, 240);
+    }
+
+    .C {
+      background-color: #7d0cf6; 
+    }
+
+    .D {
+      background-color: #17d8f6;
+    }
+
+    .E {
+      background-color: #fb09fb
+    }
+
+    /* =========================================================
+       PEMICU ANIMASI SAAT HALAMAN UTAMA AKTIF (SETELAH LOGIN)
+       ========================================================= */
+    #main-content.animate-active #UKM {
+      animation: turunMemantul 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+    }
+
+    #main-content.animate-active #MAKAN {
+      animation: zoomMasuk 0.55s ease-out 0.3s forwards;
+    }
+
+    #main-content.animate-active #judul-percobaan {
+      animation: masukDariKiri 0.75s ease-out 0.55s forwards;
+    }
+
+    #main-content.animate-active #bagian_1 {
+      animation: masukDariKanan 0.75s ease-out 0.75s forwards;
+    }
+
+    #main-content.animate-active .A {
+      animation: masukDariKiri 0.7s ease-out 0.95s forwards;
+    }
+
+    #main-content.animate-active .B {
+      animation: masukDariKanan 0.7s ease-out 1.15s forwards;
+    }
+
+    #main-content.animate-active .C {
+      animation: masukDariKiri 0.7s ease-out 1.35s forwards;
+    }
+
+    #main-content.animate-active .D {
+      animation: masukDariKanan 0.7s ease-out 1.55s forwards;
+    }
+
+    #main-content.animate-active .E {
+      animation: masukDariKiri 0.7s ease-out 1.75s forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-500">
+
+  <!-- =========================================================
+       HALAMAN 1: FORM LOGIN MODERN
+       ========================================================= -->
+  <section
+    id="login-screen"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 p-4 transition-all duration-500"
+  >
+    <!-- Dekorasi cahaya latar belakang -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl"></div>
+    </div>
+
+    <!-- Kartu Login -->
+    <div class="relative w-full max-w-md rounded-3xl border border-white/15 bg-white/10 p-8 shadow-2xl backdrop-blur-xl sm:p-10">
+      <!-- Badge / Logo UKM -->
+      <div class="mb-6 flex flex-col items-center text-center">
+        <div class="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-yellow-400 via-emerald-400 to-indigo-500 text-slate-950 shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+        </div>
+        <span class="rounded-full border border-indigo-400/30 bg-indigo-500/20 px-3 py-1 text-xs font-semibold tracking-wider text-indigo-200 uppercase">
+          Anggota Penakluk Abbys
+        </span>
+        <h1 class="mt-3 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+          UKM CODE LABZ
+        </h1>
+        <p class="mt-1 text-sm text-slate-300">
+          Masuk untuk melihat tugas</span>
+        </p>
+      </div>
+
+      <!-- Kotak Notifikasi Validasi (Pengganti alert) -->
+      <div
+        id="login-message"
+        class="mb-4 hidden rounded-xl border border-rose-400/40 bg-rose-500/20 px-4 py-2.5 text-center text-sm text-rose-200"
+      ></div>
+
+      <!-- Form Input -->
+      <form id="login-form" class="space-y-5" novalidate>
+        <div>
+          <label for="username" class="mb-1.5 block text-sm font-medium text-slate-200">
+           Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Nama lu"
+            autocomplete="off"
+            class="w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-white placeholder-slate-400 outline-none transition focus:border-yellow-400 focus:bg-white/15 focus:ring-2 focus:ring-yellow-400/30"
+          />
+         
+          </p>
+        </div>
+
+        <div>
+          <label for="password" class="mb-1.5 block text-sm font-medium text-slate-200">
+           Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Masukkin kata sandi lu"
+            class="w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-white placeholder-slate-400 outline-none transition focus:border-yellow-400 focus:bg-white/15 focus:ring-2 focus:ring-yellow-400/30"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full rounded-xl bg-gradient-to-r from-yellow-400 via-amber-400 to-emerald-400 px-5 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-amber-500/20 transition duration-200 hover:scale-[1.02] hover:brightness-105 active:scale-[0.98]"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       HALAMAN 2: HALAMAN UTAMA (TAMPILAN BANNER BERANIMASI)
+       ========================================================= -->
+  <main id="main-screen" class="hidden min-h-screen bg-white pb-12">
+    <!-- Bilah Kontrol Atas (Tombol Ulangi Animasi & Logout) -->
+    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-md">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="inline-block h-3 w-3 rounded-full bg-emerald-500"></span>
+          <span class="text-sm font-semibold text-slate-700">
+            Selamat datang <span  id="active-user-badge">sopian hamdani</span>!
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button
+            type="button"
+            id="replay-btn"
+            class="inline-flex items-center gap-1.5 rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-100 active:scale-95"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            Ulangi Animasi
+          </button>
+
+          <button
+            type="button"
+            id="logout-btn"
+            class="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-700 active:scale-95"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Kontainer Utama yang Dianimasikan Saat Login -->
+    <div id="main-content" class="mx-auto max-w-6xl px-4 pt-6 sm:px-6">
+      <!-- Judul Utama #UKM -->
+      <div class="mb-4 text-center">
+        <h1
+          id="UKM"
+          class="opacity-0 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl"
+        >
+          UKM CODE LABZ
+        </h1>
+
+        <!-- Subjudul #MAKAN -->
+        <h2
+          id="MAKAN"
+          class="opacity-1 mt-1 text-lg font-medium text-slate-600 sm:text-xl"
+        >
+          Welcome to my website
+        </h2>
+      </div>
+
+      <div class="mt-5">
+        <h3
+          id="judul-percobaan"
+          class="banner-box banner-font text-2xl sm:text-4xl"
+        >
+          sopian hamdani
+        </h3>
+
+        <h4
+          id="bagian_1"
+          class="banner-box banner-font text-2xl sm:text-2xl"
+        >
+          IRI BILANG BOSS🤣
+        </h4>
+
+        <h1 class="A banner-box banner-font text-2xl sm:text-2xl">
+          sopian hamdani
+        </h1>
+
+        <h1 class="B banner-box banner-font text-2xl sm:text-2xl">
+          sopian hamdani
+        </h1>
+
+        <h1 class="C banner-box banner-font text-2xl sm:text-2xl">
+          sopian hamdani
+        </h1>
+
+        <h1 class="D banner-box banner-font text-2xl sm:text-2xl">
+          sopian hamdani
+        </h1>
+
+        <h1 class="E banner-box banner-font text-2xl sm:text-2xl">
+          sopian hamdani
+        </h1>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Referensi elemen DOM
+    const loginScreen = document.getElementById('login-screen');
+    const loginForm = document.getElementById('login-form');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const loginMessage = document.getElementById('login-message');
+
+    const mainScreen = document.getElementById('main-screen');
+    const mainContent = document.getElementById('main-content');
+    const activeUserBadge = document.getElementById('active-user-badge');
+    const replayBtn = document.getElementById('replay-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Elemen teks yang menampilkan nama pengguna
+    const judulPercobaan = document.getElementById('judul-percobaan');
+    const userBanners = document.querySelectorAll('.A, .B, .C, .D, .E');
+
+    /**
+     * Memicu ulang seluruh animasi berurutan pada halaman utama
+     */
+    function triggerEntranceAnimations() {
+      // Hapus kelas animasi terlebih dahulu
+      mainContent.classList.remove('animate-active');
+
+      // Paksa reflow browser agar animasi CSS benar-benar diulang dari 0%
+      void mainContent.offsetWidth;
+
+      // Tambahkan kembali kelas pemicu animasi
+      mainContent.classList.add('animate-active');
+    }
+
+    /**
+     * Memperbarui nama yang tampil di banner sesuai input login (default: 'sopian hamdani')
+     */
+    function updateDisplayName(rawName) {
+      const cleanName = rawName.trim() || 'sopian hamdani';
+      activeUserBadge.textContent = cleanName;
+      judulPercobaan.textContent = cleanName;
+
+      // Perbarui juga teks pada banner A sampai E jika pengguna memasukkan nama sendiri
+      userBanners.forEach((banner) => {
+        banner.textContent = cleanName;
+      });
+    }
+
+    // Event saat form Login dikirim
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      try {
+        const enteredName = usernameInput.value;
+        const enteredPassword = passwordInput.value;
+
+        // Validasi ringan: pastikan password diisi (boleh apa saja)
+        if (!enteredPassword.trim()) {
+          loginMessage.textContent = 'SANDI LU BLOM KOCAK ☠️!!!';
+          loginMessage.classList.remove('hidden');
+          passwordInput.focus();
+          return;
+        }
+
+        // Sembunyikan pesan error jika sebelumnya muncul
+        loginMessage.classList.add('hidden');
+
+        // Perbarui nama pengguna pada tampilan
+        updateDisplayName(enteredName);
+
+        // Transisi halus menutup halaman login
+        loginScreen.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+
+        setTimeout(() => {
+          loginScreen.classList.add('hidden');
+          mainScreen.classList.remove('hidden');
+
+          // Jalankan animasi banner tepat setelah halaman utama tampil
+          triggerEntranceAnimations();
+        }, 350);
+      } catch (error) {
+        console.error('Terjadi kesalahan saat proses login:', error);
+      }
+    });
+
+    // Event tombol "Ulangi Animasi"
+    replayBtn.addEventListener('click', function () {
+      triggerEntranceAnimations();
+    });
+
+    // Event tombol "Logout" untuk kembali ke layar Login
+    logoutBtn.addEventListener('click', function () {
+      // Reset animasi halaman utama
+      mainContent.classList.remove('animate-active');
+
+      // Sembunyikan halaman utama dan tampilkan kembali form login
+      mainScreen.classList.add('hidden');
+      loginScreen.classList.remove('hidden');
+
+      // Reset password agar siap diuji kembali
+      passwordInput.value = '';
+
+      requestAnimationFrame(() => {
+        loginScreen.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+      });
+    });
+  </script>
+</body>
+</html>

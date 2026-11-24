@@ -1,0 +1,204 @@
+ body{
+            background-color: rgb(255, 255, 255);
+        }
+        #UKM {
+            color: rgb(241, 22, 10);
+            font-family: 'Algerian', sans-serif;
+            font-size: 30px;
+            text-align: center;
+             font-weight: bold;
+                    
+        }
+        #MAKAN {
+            color: rgb(0, 0, 0);
+            font-family: 'Algerian', sans-serif;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            background-color: rgb(238, 19, 216);
+                    
+        }
+        #padding_bg-blue_margin {
+            padding-bottom: 1%;
+            padding-top: 1%;
+            padding-left: 1%;
+            padding-right: 1%;
+        }
+        #judul-percobaan {
+            font-style: Italic;
+            font-size: 30px;
+             font-weight: bold;
+            text-align: center;
+            margin:1%;
+            background-color: rgb(255, 255, 0);
+        }
+        #bagian_1 {
+            font-style: Italic;
+            font-size: 30px;
+             font-weight: bold;
+            text-align: center;
+            margin:2%;
+            background-color: rgb(0, 255, 81);
+        }
+        #UKM{
+
+            background-color: rgb(127, 225, 255);
+        }
+        .bg-blue {
+           color: rgb(1, 11, 1);
+           text-align: center;
+           font-style:italic;
+           
+        }
+        
+        .margin {
+            margin: 1%;
+        }
+        .A{
+            background-color: rgb(255, 0, 0);
+            text-align: center; 
+            font-style: italic; 
+            margin: 1%; 
+            animation: masukDariKiri 0.7s ease-out 1.0s forwards;   
+        }
+        .B{
+            background-color: rgb(0, 255, 0);
+            text-align: center;
+            font-style: italic;
+            margin: 1%;
+            animation: masukDarikanan 0.7s ease-out 1.15s forwards;
+        }
+        .C{
+            background-color: rgb(0, 0, 255);
+            text-align: center;
+            font-style: italic;
+            margin: 1%;
+            animation: masukDariKiri 0.7s ease-out 1.3s forwards;
+        }
+        .D{
+            background-color: rgb(255, 255, 0);
+            text-align: center;
+            font-style: italic;
+            margin: 1%;
+            animation: masukDariKanan 0.7s ease-out 1.45s forwards;
+        }
+        .E{
+            background-color: rgb(255, 0, 255);
+            text-align: center;
+            font-style: italic;
+            margin: 1%;
+            animation: masukDariKiri 0.7s ease-out 1.6s forwards;
+        }
+ .teks-masuk-gerak {
+  display: inline-block;
+  animation: geserDanMuncul 2 s ease-out forwards;
+}
+
+#UKM {
+  animation: turunMemantul 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+#MAKAN {
+  opacity: 1;
+  animation: zoomMasuk 0.5s ease-out 0.3s forwards;
+}
+
+#judul-percobaan {
+  opacity: 1;
+  animation: masukDariKiri 0.8s ease-out 0.6s forwards;
+}
+
+#bagian_1 {
+  opacity: 1;
+  animation: masukDariKanan 0.8s ease-out 0.8s forwards;
+}
+
+.A, .B, .C, .D, .E {
+  opacity: 1;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.A:hover, .B:hover, .C:hover, .D:hover, .E:hover {
+  transform: translateX(15px);
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+
+@keyframes turunMemantul {
+  0% {
+    opacity: 1;
+    transform: translateY(-50px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomMasuk {
+  0% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes masukDariKiri {
+  0% {
+    opacity: 1;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes masukDariKanan {
+  0% {
+    opacity: 1;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+h1 {
+    border-radius: 10px;
+}
+h2 {
+    border-radius: 10px;
+}
+h3 {
+    border-radius: 10px;
+}
+h4 {
+    border-radius: 10px;
+}
+
+
+* {
+  box-sizing: border-box; 
+}
+
+#UKM, 
+#MAKAN, 
+#judul-percobaan, 
+#bagian_1, 
+.A, .B, .C, .D, .E {
+  width: 100%;            
+  margin: 8px 0;     
+  padding: 14px 20px;  
+  font-size: 22px;        
+  text-align: center;  
+  display: block;       
+}
